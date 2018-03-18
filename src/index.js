@@ -18,6 +18,8 @@ const Wrapper = styled.div`
 margin: 100px;
 `
 
+const myContext = React.createContext()
+
 
 // main ("ROOT") component 
 export default class Root extends Component {
