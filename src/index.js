@@ -19,7 +19,7 @@ margin: 100px;
 `
 
 // make a new context
-const myContext = React.createContext()
+const MyContext = React.createContext()
 
 // create a provider component 
 class MyProvider extends Component {
@@ -30,7 +30,9 @@ class MyProvider extends Component {
  }
   render() {
   return (
-   
+   <MyContext.Provider value="This is a value">
+      {this.props.children} 
+   </MyContext.Provider>
   )
  }
 }
@@ -44,13 +46,14 @@ render() {
 
 // MAIN COMPONENT RETURN
 return (
+<MyProvider>
+ <Wrapper>
 
-<Wrapper>
+ <Family name={this.state.name}/>
 
-<Family name={this.state.name}/>
+ </Wrapper>
 
-</Wrapper>
-
+</MyProvider>
 )// end return
 }// end render
 }// end component
