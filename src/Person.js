@@ -3,7 +3,7 @@ import React from 'react'
 export default ({name}) => (
   <MyContext.Consumer>
     {(context) => (
-    <p>{name}</p>
+    <p>{context.state.age}</p>
   )}
   </MyContext.Consumer>
 )
