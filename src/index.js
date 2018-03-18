@@ -1,8 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component, CreateContext} from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
 import styled, {injectGlobal} from 'styled-components'
-import Family from './Family'
 
 
 //eslint-disable-next-line
@@ -18,25 +17,6 @@ const Wrapper = styled.div`
 margin: 100px;
 `
 
-// make a new context
-const MyContext = React.createContext()
-
-// create a provider component 
-class MyProvider extends Component {
-  state = {
-  name: 'Fred',
-  age: 34,
-  city: 'LA'
- }
-  render() {
-  return (
-   <MyContext.Provider value="This is a value">
-      {this.props.children} 
-   </MyContext.Provider>
-  )
- }
-}
-
 
 // main ("ROOT") component 
 export default class Root extends Component {
@@ -46,14 +26,11 @@ render() {
 
 // MAIN COMPONENT RETURN
 return (
-<MyProvider>
  <Wrapper>
 
- <Family name={this.state.name}/>
-
+Hello
  </Wrapper>
 
-</MyProvider>
 )// end return
 }// end render
 }// end component
