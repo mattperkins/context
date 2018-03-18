@@ -21,13 +21,22 @@ margin: 100px;
 const myContext = React.createContext()
 
 
+class MyProvider extends Component {
+  state = {
+  name: 'Fred',
+  age: 34,
+  city: 'LA'
+ }
+  render() {
+  return (
+   
+  )
+ }
+}
+
+
 // main ("ROOT") component 
 export default class Root extends Component {
-state={
- name: 'Fred',
- age: 34,
- city: 'LA'
-}
 
 // MAIN COMPONENT RENDER
 render() {
