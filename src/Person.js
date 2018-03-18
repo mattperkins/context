@@ -1,3 +1,9 @@
 import React from 'react'
 
-export default ({name}) => <p>{name}</p>
+export default ({name}) => (
+  <MyContext.Consumer>
+    {(context) => (
+    <p>{name}</p>
+  )}
+  </MyContext.Consumer>
+)
