@@ -16,7 +16,11 @@ const Wrapper = styled.div`
 margin: 100px;
 `
 
-
+const Lemon = () => <React.Fragment>
+    <p>I am</p>
+    <p>Lemon</p>
+</React.Fragment>
+ 
 // main ("ROOT") component 
 export default class Root extends Component {
 
@@ -26,7 +30,7 @@ render() {
 // MAIN COMPONENT RETURN
 return (
   <Wrapper>
-   Hello
+   <Lemon />
   </Wrapper>
 )// end return
 }// end render
