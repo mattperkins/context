@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
 import styled, {injectGlobal} from 'styled-components'
-import Person from './Person'
+import Family from './Family'
+
 
 //eslint-disable-next-line
 injectGlobal`
@@ -34,8 +35,7 @@ return (
 
 <Wrapper>
 
-
-<Person name={this.state.name}/>
+<Family name={this.state.name}/>
 
 </Wrapper>
 
