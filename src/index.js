@@ -18,9 +18,10 @@ const Wrapper = styled.div`
 margin: 100px;
 `
 
+// make a new context
 const myContext = React.createContext()
 
-
+// create a provider component 
 class MyProvider extends Component {
   state = {
   name: 'Fred',
