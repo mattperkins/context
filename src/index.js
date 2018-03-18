@@ -11,11 +11,18 @@ font-family: sans-serif;
 background: #f7f7f7;
 }
 `
-
 // styled components
 const Wrapper = styled.div`
 margin: 100px;
 `
+
+const AppContext = createContext()
+
+const { Provider, Consumer } = AppContext
+
+const initialState = {
+  users: [ 'Fred', 'Sandy', 'Bob' ]
+}
 
 
 // main ("ROOT") component 
