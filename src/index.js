@@ -17,9 +17,26 @@ margin: 100px;
 
 const CTX = React.createContext()
 class Provider extends Component {
+  state = {
+  viewer: null
+  }
+
+  logIn = (name) => {
+    this.setState({viewer: name})
+  }
+
+  logOut = () => {
+    this.setState({
+      viewer: null
+    })
+  }
   render() {
     return (
-      <CTX.Provider>
+      <CTX.Provider value={{
+        viewer: this.state.viewer,
+        logIn: this.logIn,
+        logOut: this.logOut
+      }}>
         {this.props.children}
       </CTX.Provider>
     )
@@ -50,27 +67,17 @@ class LoginForm extends Component {
 
 // main ("ROOT") component 
 export default class Root extends Component {
-state = {
-  viewer: null
-  }
 
-  logIn = (name) => {
-    this.setState({viewer: name})
-  }
-
-  logOut = () => {
-    this.setState({
-      viewer: null
-    })
-  }
 // MAIN COMPONENT RENDER
 render() {
 
 // MAIN COMPONENT RETURN
 return (
-  <Wrapper>
-   <Nav />
-  </Wrapper>
+  <Provider>
+    <Wrapper>
+      <Nav />
+    </Wrapper>
+  </Provider>
 )// end return
 }// end render
 }// end component
