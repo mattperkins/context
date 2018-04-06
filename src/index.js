@@ -50,17 +50,17 @@ class LoginForm extends Component {
   render() {
     return <CTX.Consumer>
       {(value) => {
-        
-          return this.state.viewer ? (
+        const { viewer, logIn, logOut } = value
+          return viewer ? (
 <React.Fragment>
-     <h3>Logged in as: {this.state.viewer}</h3>
-     <button onClick={this.logOut}>Log Out</button>
+     <h3>Logged in as: {viewer}</h3>
+     <button onClick={logOut}>Log Out</button>
 </React.Fragment>
    ) : (
 <React.Fragment>
     <input placeholder="Log in" ref={r => this.inputRef = r} />
     <button type="submit" onClick={() => {
-      this.logIn(this.inputRef.value)
+      logIn(this.inputRef.value)
     } }>Log in</button>
 </React.Fragment>
    )
@@ -81,7 +81,15 @@ render() {
 return (
   <Provider>
     <Wrapper>
+      
+      <CTX.Consumer>
+        {({ viewer }) => (
+          <h1>{viewer ? `Welcome ${viewer}!` : 'Please Log in'}</h1>
+        )}
+      </CTX.Consumer>
+
       <Nav />
+      
     </Wrapper>
   </Provider>
 )// end return
