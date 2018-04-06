@@ -15,22 +15,41 @@ background: #f7f7f7;
 const Wrapper = styled.div`
 margin: 100px;
 `
-
-const Lemon = () => <React.Fragment>
-    <p>I am</p>
-    <p>Lemon</p>
-</React.Fragment>
  
 // main ("ROOT") component 
 export default class Root extends Component {
+state = {
+  viewer: null
+  }
 
+  logIn = (name) => {
+    this.setState({viewer: name})
+  }
+
+  logOut = () => {
+    this.setState({
+      viewer: null
+    })
+  }
 // MAIN COMPONENT RENDER
 render() {
 
 // MAIN COMPONENT RETURN
 return (
   <Wrapper>
-   <Lemon />
+   {this.state.viewer ? (
+     <React.Fragment>
+     <h3>Logged in as: {this.state.viewer}</h3>
+     <button onClick={this.logOut}>Log Out</button>
+     </React.Fragment>
+   ) : (
+     <React.Fragment>
+    <input placeholder="Log in" ref={r => this.inputRef = r} />
+    <button type="submit" onClick={() => {
+      this.logIn(this.inputRef.value)
+    } }>Log in</button>
+</React.Fragment>
+   )}
   </Wrapper>
 )// end return
 }// end render
