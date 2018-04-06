@@ -33,9 +33,13 @@ class Provider extends Component {
   render() {
     return (
       <CTX.Provider value={{
-        viewer: this.state.viewer,
-        logIn: this.logIn,
-        logOut: this.logOut
+        
+        state: this.state,
+        actions: {
+          logIn: this.logIn,
+          logOut: this.logOut
+        }
+        
       }}>
         {this.props.children}
       </CTX.Provider>
@@ -50,7 +54,8 @@ class LoginForm extends Component {
   render() {
     return <CTX.Consumer>
       {(value) => {
-        const { viewer, logIn, logOut } = value
+        const { viewer } = value.state
+        const { logIn, logOut } = value.actions
           return viewer ? (
 <React.Fragment>
      <h3>Logged in as: {viewer}</h3>
@@ -83,7 +88,7 @@ return (
     <Wrapper>
       
       <CTX.Consumer>
-        {({ viewer }) => (
+        {({ state: { viewer } }) => (
           <h1>{viewer ? `Welcome ${viewer}!` : 'Please Log in'}</h1>
         )}
       </CTX.Consumer>
