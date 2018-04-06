@@ -48,7 +48,10 @@ const Nav = () => <LoginForm />
 class LoginForm extends Component {
   state = {}
   render() {
-    return this.state.viewer ? (
+    return <CTX.Consumer>
+      {(value) => {
+        
+          return this.state.viewer ? (
 <React.Fragment>
      <h3>Logged in as: {this.state.viewer}</h3>
      <button onClick={this.logOut}>Log Out</button>
@@ -61,6 +64,9 @@ class LoginForm extends Component {
     } }>Log in</button>
 </React.Fragment>
    )
+    }}
+</CTX.Consumer>
+    
   }
 }
 
