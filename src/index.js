@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import registerServiceWorker from './registerServiceWorker'
 import styled, {injectGlobal} from 'styled-components'
+import { Provider, Consumer } from './CTX'
 
 //eslint-disable-next-line
 injectGlobal`
@@ -15,44 +16,13 @@ const Wrapper = styled.div`
 margin: 100px;
 `
 
-const CTX = React.createContext()
-class Provider extends Component {
-  state = {
-  viewer: null
-  }
-
-  logIn = (name) => {
-    this.setState({viewer: name})
-  }
-
-  logOut = () => {
-    this.setState({
-      viewer: null
-    })
-  }
-  render() {
-    return (
-      <CTX.Provider value={{
-        
-        state: this.state,
-        actions: {
-          logIn: this.logIn,
-          logOut: this.logOut
-        }
-        
-      }}>
-        {this.props.children}
-      </CTX.Provider>
-    )
-  }
-}
 
 const Nav = () => <LoginForm />
 
 class LoginForm extends Component {
   state = {}
   render() {
-    return <CTX.Consumer>
+    return <Consumer>
       {(value) => {
         const { viewer } = value.state
         const { logIn, logOut } = value.actions
@@ -70,7 +40,7 @@ class LoginForm extends Component {
 </React.Fragment>
    )
     }}
-</CTX.Consumer>
+</Consumer>
     
   }
 }
@@ -87,11 +57,11 @@ return (
   <Provider>
     <Wrapper>
       
-      <CTX.Consumer>
+      <Consumer>
         {({ state: { viewer } }) => (
           <h1>{viewer ? `Welcome ${viewer}!` : 'Please Log in'}</h1>
         )}
-      </CTX.Consumer>
+      </Consumer>
 
       <Nav />
       
